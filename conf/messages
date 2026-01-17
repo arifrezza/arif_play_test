@@ -1,1 +1,6 @@
 # https://www.playframework.com/documentation/latest/ScalaI18N
+name.required=Please enter your name
+age.required=Please enter your age
+age.numeric=Please enter a valid number for age
+age.range=Age must be between 0 and 120
+

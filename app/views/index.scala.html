@@ -1,8 +1,7 @@
-@import play.api.i18n.Messages.implicitMessagesProviderToMessages
-@(userForm: play.api.data.Form[models.UserData])
-@import helper._
-@import play.api.data._
-@import play.api.i18n._
+
+@(userForm: play.api.data.Form[models.UserData])(implicit messages: play.api.i18n.Messages)
+
+
 
   <!DOCTYPE html>
 <html lang="">
@@ -13,12 +12,12 @@
     </head>
     <body>
         <h1>Insert Your name & Age</h1>
-        @helper.form(action = routes.HomeController.processForm()) {
+        @helper.form(action = routes.HomeController.processForm) {
             <!-- Name field -->
           @helper.inputText(
             userForm("name"),
-            Symbol("_label") -> "Name",
-            Symbol("_error") -> userForm.error("name")
+            Symbol("_label") -> "Namee",
+            //Symbol("_error") -> false
           )
             <!-- Age field -->
           @helper.inputText(
