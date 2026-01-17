@@ -1,9 +1,11 @@
 @import play.api.i18n.Messages.implicitMessagesProviderToMessages
-@(UserForm: play.api.data.Form[models.UserData])
+@(userForm: play.api.data.Form[models.UserData])
 @import helper._
+@import play.api.data._
+@import play.api.i18n._
 
   <!DOCTYPE html>
-<html>
+<html lang="">
     <head>
         <title>Arif Form</title>
         <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/main.css")">
@@ -14,20 +16,20 @@
         @helper.form(action = routes.HomeController.processForm()) {
             <!-- Name field -->
           @helper.inputText(
-            UserForm("name"),
+            userForm("name"),
             Symbol("_label") -> "Name",
-            Symbol("_error") -> UserForm.error("name")
+            Symbol("_error") -> userForm.error("name")
           )
             <!-- Age field -->
           @helper.inputText(
-            UserForm("age"),
+            userForm("age"),
             Symbol("_label") -> "Age",
-            Symbol("_error") -> UserForm.error("age")
+            Symbol("_error") -> userForm.error("age")
           )
 
             <button type="submit">SUBMIT</button>
         }
-        @UserForm.globalErrors.map { error =>
+        @userForm.globalErrors.map { error =>
             <p style="color: red;">@error.message</p>
         }
     </body>

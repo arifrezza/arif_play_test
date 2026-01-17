@@ -7,10 +7,11 @@ import play.api.mvc._
 import play.api.data.Forms._
 import models.UserData
 import play.api.data.Form
+import play.api.i18n._
 
 
 @Singleton
-class HomeController @Inject()(val controllerComponents: ControllerComponents) extends BaseController {
+class HomeController @Inject()(val cc: MessagesControllerComponents) extends MessagesAbstractController(cc) {
 
   //Define a form mapping for UserData
   val userForm:Form[UserData] = Form(
