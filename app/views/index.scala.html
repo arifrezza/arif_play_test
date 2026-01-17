@@ -1,7 +1,33 @@
-@()
+@import play.api.i18n.Messages.implicitMessagesProviderToMessages
+@(UserForm: play.api.data.Form[models.UserData])
+@import helper._
 
-@main("Arif Homepage")
-  @*{
-  <h1>Welcome to Play!</h1>
-  
-}*@
+  <!DOCTYPE html>
+<html>
+    <head>
+        <title>Arif Form</title>
+        <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/main.css")">
+        <script src="@routes.Assets.versioned("javascripts/main.js")" type="text/javascript"></script>
+    </head>
+    <body>
+        <h1>Insert Your name & Age</h1>
+        @helper.form(action = routes.HomeController.processForm()) {
+            <!-- Name field -->
+          @helper.inputText(
+            UserForm("name"),
+            Symbol("_label") -> "Name",
+            Symbol("_error") -> UserForm.error("name")
+          )
+            <!-- Age field -->
+          @helper.inputText(
+            UserForm("age"),
+            Symbol("_label") -> "Age",
+            Symbol("_error") -> UserForm.error("age")
+          )
+
+            <button type="submit">SUBMIT</button>
+        }
+        @UserForm.globalErrors.map { error =>
+            <p style="color: red;">@error.message</p>
+        }
+    </body>
